@@ -1,185 +1,186 @@
+#
+# Do not edit the Key, if you edit the key the mob will become un-usable
 Creeper:
   Price: 50000
   Drop Chance: 50
   Alias:
-  - 'Creeper'
-  - 'Boomer'
+  - Creeper
+  - Boomer
 Zombie:
   Price: 25000
   Drop Chance: 50
   Alias:
-  - 'zombie'
+  - zombie
 Skeleton:
   Price: 25000
   Drop Chance: 50
   Alias:
-  - 'skeleton'
+  - skeleton
 Witch:
   Price: 60000
   Drop Chance: 50
   Alias:
-  - 'witch'
+  - witch
 Spider:
   Price: 15000
   Drop Chance: 50
   Alias:
-  - 'spider'
+  - spider
 Giant:
   Price: 100000
   Drop Chance: 50
   Alias:
-  - 'giant'
-  - 'megazombie'
+  - giant
+  - megazombie
 Slime:
   Price: 55000
   Drop Chance: 50
   Alias:
-  - 'slime'
-  - 'cube'
+  - slime
+  - cube
 Cow:
   Price: 5000
   Drop Chance: 50
   Alias:
-  - 'cow'
+  - cow
 Pig:
   Price: 2000
   Drop Chance: 50
   Alias:
-  - 'pig'
-  - 'hog'
-  - 'bore'
+  - pig
+  - hog
+  - bore
 Wolf:
   Price: 2300
   Drop Chance: 50
   Alias:
-  - 'wolf'
-  - 'dog'
+  - wolf
+  - dog
 Sheep:
   Price: 1000
   Drop Chance: 50
   Alias:
-  - 'sheep'
+  - sheep
 Chicken:
   Price: 800
   Drop Chance: 50
   Alias:
-  - 'chicken'
-  - 'bird'
-# Do not edit the Key, if you edit the key the mob will become un-usable
+  - chicken
+  - bird
 Enderman:
   Price: 3200
   Drop Chance: 50
   Alias:
-  - 'enderman'
-  - 'slenderman'
+  - enderman
+  - slenderman
 Rabbit:
   Price: 1000
   Drop Chance: 50
   Alias:
-  - 'rabbit'
-  - 'bunny'
+  - rabbit
+  - bunny
 Horse:
   Price: 80000
   Drop Chance: 50
   Alias:
-  - 'horse'
-  - 'pony'
+  - horse
+  - pony
 Ocelot:
   Price: 500
   Drop Chance: 50
   Alias:
-  - 'ocelot'
-  - 'cat'
-  - 'kitty'
+  - ocelot
+  - cat
+  - kitty
 Squid:
   Price: 2300
   Drop Chance: 50
   Alias:
-  - 'squid'
-  - 'octopus'
+  - squid
+  - octopus
 Mushroom_Cow:
   Price: 20000
   Drop Chance: 50
   Alias:
-  - 'mushroomcow'
-  - 'mooshroomcow'
-  - 'redcow'
-  - 'cow2'
+  - mushroomcow
+  - mooshroomcow
+  - redcow
+  - cow2
 Magma_Cube:
   Price: 32000
   Drop Chance: 50
   Alias:
-  - 'lavaslime'
-  - 'magmacube'
-  - 'magmaslime'
-  - 'netherslime'
+  - lavaslime
+  - magmacube
+  - magmaslime
+  - netherslime
 Snowman:
   Price: 500
   Drop Chance: 50
   Alias:
-  - 'snowman'
-  - 'frosty'
+  - snowman
+  - frosty
 Blaze:
   Price: 500
   Drop Chance: 50
   Alias:
-  - 'blaze'
+  - blaze
 Ghast:
   Price: 500
   Drop Chance: 50
   Alias:
-  - 'ghast'
+  - ghast
 Wither:
   Price: 50000
   Drop Chance: 50
   Alias:
-  - 'wither'
+  - wither
 SilverFish:
   Price: 1000
   Drop Chance: 50
   Alias:
-  - 'silverfish'
+  - silverfish
 Cave_Spider:
   Price: 1000
   Drop Chance: 50
   Alias:
-  - 'cavespider'
-  - 'babyspider'
+  - cavespider
+  - babyspider
 Bat:
   Price: 1000
   Drop Chance: 50
   Alias:
-  - 'bat'
-  - 'bird'
+  - bat
+  - bird
 Endermite:
   Price: 1000
   Drop Chance: 50
   Alias:
-  - 'endermite'
+  - endermite
 Guardian:
   Price: 50000
   Drop Chance: 50
   Alias:
-  - 'guardian'
+  - guardian
 Iron_Golem:
   Price: 10000
   Drop Chance: 50
   Alias:
-  - 'golem'
-  - 'irongolem'
-  - 'villagergolem'
+  - golem
+  - irongolem
+  - villagergolem
 Ender_Dragon:
   Price: 50000
   Drop Chance: 50
   Alias:
-  - 'enderdragon'
-  - 'dragon'
-  - 'boss'
+  - enderdragon
+  - dragon
+  - boss
 Pig_Zombie:
   Price: 500000
   Drop Chance: 50
   Alias:
-  - 'pigman'
-  - 'pigmen'
-  - 'pigzombie'
-  - 'zombiepig'
+  - pigman
+  - pigmen
+  - pigzombie
+  - zombiepig
