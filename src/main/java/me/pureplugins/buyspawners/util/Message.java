@@ -12,8 +12,8 @@ public class Message {
     private final boolean useActionBar = Main.getInstance().getConfig().getBoolean("use action bar");
 
     public void send(Player target, Object message) {
-        if (this.useActionBar) {
-            this.action(target, message);
+        if (useActionBar) {
+            action(target, message);
         } else {
             target.sendMessage(Language.PREFIX.toString() + message);
         }

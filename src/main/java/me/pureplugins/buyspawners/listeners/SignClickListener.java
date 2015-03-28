@@ -25,7 +25,7 @@ public class SignClickListener implements Listener {
     private final boolean permissionToBuy;
 
     public SignClickListener() {
-        this.permissionToBuy = this.instance.getConfig().getBoolean("use permissions to buy");
+        permissionToBuy = instance.getConfig().getBoolean("use permissions to buy");
     }
 
     @EventHandler
@@ -42,7 +42,7 @@ public class SignClickListener implements Listener {
 
                     if (user.isSneaking()) {
                         if (!user.hasPermission(Permissions.get("buyspawners.signs.update"))) {
-                            this.instance.message.send(user, Language.NO_PERMS_UPDATE);
+                            instance.message.send(user, Language.NO_PERMS_UPDATE);
                             return;
                         }
 
@@ -50,16 +50,16 @@ public class SignClickListener implements Listener {
                         if (spawner != null) {
                             sign.setLine(3, "$" + spawner.getPrice());
                             sign.update();
-                            this.instance.message.send(user, Language.SUCCESS_UPDATE);
+                            instance.message.send(user, Language.SUCCESS_UPDATE);
                             return;
                         }
-                    } else if (line[0].contains("[Spawner]") && this.instance.signLocations.contains(sign.getLocation().toString())) {
+                    } else if (line[0].contains("[Spawner]") && instance.signLocations.contains(sign.getLocation().toString())) {
                         spawner = SpawnerManager.getSpawner(ChatColor.stripColor(line[2].toLowerCase()));
                         if (spawner != null) {
                             String mob = spawner.getName();
 
-                            if (this.permissionToBuy && (!user.hasPermission(Permissions.get("buyspawners.signs.use." + mob)) || !user.hasPermission(Permissions.get("buyspawners.signs.use.*")))) {
-                                this.instance.message.send(user, Language.NO_PERMS_BUY);
+                            if (permissionToBuy && (!user.hasPermission(Permissions.get("buyspawners.signs.use." + mob)) || !user.hasPermission(Permissions.get("buyspawners.signs.use.*")))) {
+                                instance.message.send(user, Language.NO_PERMS_BUY);
                                 return;
                             }
 
@@ -71,12 +71,12 @@ public class SignClickListener implements Listener {
                                 BuySpawnerEvent cost1 = new BuySpawnerEvent(user, EntityType.valueOf(mob.toUpperCase()), mob, 0.0D);
 
                                 Bukkit.getPluginManager().callEvent(cost1);
-                                this.instance.message.send(user, Language.SUCCESS_PURCHASE.toString().replace("%amount%", Integer.toString(amount)).replace("%type%", mob));
+                                instance.message.send(user, Language.SUCCESS_PURCHASE.toString().replace("%amount%", Integer.toString(amount)).replace("%type%", mob));
                                 return;
                             }
 
                             double cost = Double.parseDouble(ChatColor.stripColor(line[3].replace("$", "")));
-                            EconomyResponse er = this.instance.econ.withdrawPlayer(user, cost);
+                            EconomyResponse er = instance.econ.withdrawPlayer(user, cost);
 
                             if (er.transactionSuccess()) {
                                 user.getInventory().addItem(CreateSpawner.get(mob, amount));
@@ -84,11 +84,11 @@ public class SignClickListener implements Listener {
                                 BuySpawnerEvent event = new BuySpawnerEvent(user, EntityType.valueOf(mob.toUpperCase()), mob, cost);
 
                                 Bukkit.getPluginManager().callEvent(event);
-                                this.instance.message.send(user, Language.SUCCESS_PURCHASE.toString().replace("%amount%", Integer.toString(amount)).replace("%type%", mob));
+                                instance.message.send(user, Language.SUCCESS_PURCHASE.toString().replace("%amount%", Integer.toString(amount)).replace("%type%", mob));
                                 return;
                             }
 
-                            this.instance.message.send(user, Language.NO_FUNDS);
+                            instance.message.send(user, Language.NO_FUNDS);
                             return;
                         }
                     }

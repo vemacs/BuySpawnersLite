@@ -16,35 +16,35 @@ public final class LocationConfig {
 
     public void reloadConfig() {
         String configName = "locations.yml";
-        if (this.file == null) {
-            this.file = new File(this.instance.getDataFolder(), configName);
+        if (file == null) {
+            file = new File(instance.getDataFolder(), configName);
         }
 
-        this.fileConfig = YamlConfiguration.loadConfiguration(this.file);
-        InputStream input = this.instance.getResource(configName);
+        fileConfig = YamlConfiguration.loadConfiguration(file);
+        InputStream input = instance.getResource(configName);
 
         if (input != null) {
-            YamlConfiguration config = YamlConfiguration.loadConfiguration(this.file);
+            YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 
-            this.fileConfig.setDefaults(config);
+            fileConfig.setDefaults(config);
         }
 
     }
 
     public FileConfiguration getConfig() {
-        if (this.fileConfig == null) {
-            this.reloadConfig();
+        if (fileConfig == null) {
+            reloadConfig();
         }
 
-        return this.fileConfig;
+        return fileConfig;
     }
 
     public void saveConfig() {
-        if (this.fileConfig != null && this.file != null) {
+        if (fileConfig != null && file != null) {
             try {
-                this.getConfig().save(this.file);
+                getConfig().save(file);
             } catch (IOException ioexception) {
-                this.instance.getLogger().log(Level.SEVERE, "Could not create config " + this.file, ioexception);
+                instance.getLogger().log(Level.SEVERE, "Could not create config " + file, ioexception);
             }
 
         }

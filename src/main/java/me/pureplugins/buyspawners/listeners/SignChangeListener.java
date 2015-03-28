@@ -19,12 +19,12 @@ public class SignChangeListener implements Listener {
     private final String[] colors = new String[4];
 
     public SignChangeListener() {
-        ConfigurationSection section = this.instance.getConfig().getConfigurationSection("signColors");
+        ConfigurationSection section = instance.getConfig().getConfigurationSection("signColors");
 
-        this.colors[0] = ChatColor.translateAlternateColorCodes('&', section.getString("lineOne"));
-        this.colors[1] = ChatColor.translateAlternateColorCodes('&', section.getString("lineTwo"));
-        this.colors[2] = ChatColor.translateAlternateColorCodes('&', section.getString("lineThree"));
-        this.colors[3] = ChatColor.translateAlternateColorCodes('&', section.getString("lineFour"));
+        colors[0] = ChatColor.translateAlternateColorCodes('&', section.getString("lineOne"));
+        colors[1] = ChatColor.translateAlternateColorCodes('&', section.getString("lineTwo"));
+        colors[2] = ChatColor.translateAlternateColorCodes('&', section.getString("lineThree"));
+        colors[3] = ChatColor.translateAlternateColorCodes('&', section.getString("lineFour"));
     }
 
     @EventHandler
@@ -37,30 +37,30 @@ public class SignChangeListener implements Listener {
                 try {
                     Integer.parseInt(lines[1]);
                 } catch (NumberFormatException numberformatexception) {
-                    this.instance.message.send(target, Language.INVALID_NUMBER);
+                    instance.message.send(target, Language.INVALID_NUMBER);
                     return;
                 }
 
                 Spawner spawner = SpawnerManager.getSpawner(lines[2]);
 
                 if (spawner != null) {
-                    if (!this.containsDigit(lines[3])) {
+                    if (!containsDigit(lines[3])) {
                         if (!lines[3].equalsIgnoreCase("sync")) {
-                            this.instance.message.send(target, Language.INVALID_NUMBER);
+                            instance.message.send(target, Language.INVALID_NUMBER);
                             return;
                         }
 
                         lines[3] = "$" + spawner.getPrice();
                     }
 
-                    evt.setLine(0, this.colors[0] + "[Spawner]");
-                    evt.setLine(1, this.colors[1] + lines[1]);
-                    evt.setLine(2, this.colors[2] + lines[2]);
-                    evt.setLine(3, this.colors[3] + lines[3]);
-                    this.instance.signLocations.add(evt.getBlock().getLocation().toString());
-                    this.instance.message.send(target, Language.SIGN_CREATE.toString().replace("%type%", WordUtils.capitalizeFully(lines[2])));
+                    evt.setLine(0, colors[0] + "[Spawner]");
+                    evt.setLine(1, colors[1] + lines[1]);
+                    evt.setLine(2, colors[2] + lines[2]);
+                    evt.setLine(3, colors[3] + lines[3]);
+                    instance.signLocations.add(evt.getBlock().getLocation().toString());
+                    instance.message.send(target, Language.SIGN_CREATE.toString().replace("%type%", WordUtils.capitalizeFully(lines[2])));
                 } else {
-                    this.instance.message.send(target, Language.INVALID_MOB);
+                    instance.message.send(target, Language.INVALID_MOB);
                 }
             }
         }

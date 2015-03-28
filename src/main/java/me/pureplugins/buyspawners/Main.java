@@ -29,50 +29,50 @@ public class Main extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         Main.instance = this;
-        this.saveDefaultConfig();
+        saveDefaultConfig();
         Language.load.loadLang();
-        this.message = new Message();
-        this.locationConfig = new LocationConfig();
-        this.locationConfig.reloadConfig();
+        message = new Message();
+        locationConfig = new LocationConfig();
+        locationConfig.reloadConfig();
         SpawnerManager.loadSpawners();
-        this.signLocations = this.locationConfig.getConfig().getStringList("Locations");
-        if (!this.setupEconomy()) {
-            this.getLogger().info(String.format("[%s] - Disabled due to no Vault dependency found!", new Object[] { this.getDescription().getName()}));
-            this.setEnabled(false);
+        signLocations = locationConfig.getConfig().getStringList("Locations");
+        if (!setupEconomy()) {
+            getLogger().severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
+            setEnabled(false);
         } else {
-            this.registerCommands();
-            this.registerListeners();
+            registerCommands();
+            registerListeners();
         }
     }
 
     private void registerCommands() {
-        this.getCommand("givespawner").setExecutor(new CommandGiveSpawner());
+        getCommand("givespawner").setExecutor(new CommandGiveSpawner());
     }
 
     private void registerListeners() {
-        this.getServer().getPluginManager().registerEvents(new SignChangeListener(), this);
-        this.getServer().getPluginManager().registerEvents(new SignClickListener(), this);
+        getServer().getPluginManager().registerEvents(new SignChangeListener(), this);
+        getServer().getPluginManager().registerEvents(new SignClickListener(), this);
     }
 
     @Override
     public void onDisable() {
-        this.locationConfig.getConfig().set("Locations", this.signLocations);
-        this.locationConfig.saveConfig();
-        this.saveDefaultConfig();
-        Main.instance = null;
+        locationConfig.getConfig().set("Locations", signLocations);
+        locationConfig.saveConfig();
+        saveDefaultConfig();
+        instance = null;
     }
 
     private boolean setupEconomy() {
-        if (this.getServer().getPluginManager().getPlugin("Vault") == null) {
+        if (getServer().getPluginManager().getPlugin("Vault") == null) {
             return false;
         } else {
-            RegisteredServiceProvider rsp = this.getServer().getServicesManager().getRegistration(Economy.class);
+            RegisteredServiceProvider rsp = getServer().getServicesManager().getRegistration(Economy.class);
 
             if (rsp == null) {
                 return false;
             } else {
-                this.econ = (Economy) rsp.getProvider();
-                return this.econ != null;
+                econ = (Economy) rsp.getProvider();
+                return econ != null;
             }
         }
     }
