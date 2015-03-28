@@ -1,0 +1,12 @@
+main: me.pureplugins.buyspawners.Main
+
+depend: [Vault]
+
+name: BuySpawners
+version: 3.1
+author: PurePlugins
+description: This is a poorly written piece of shit that should die in a hole
+
+commands:
+    givespawner:
+        description: allows admins to give users spawners.
