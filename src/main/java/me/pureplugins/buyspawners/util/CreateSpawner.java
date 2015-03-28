@@ -2,7 +2,9 @@ package me.pureplugins.buyspawners.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.server.v1_8_R1.NBTTagCompound;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
@@ -12,6 +14,18 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class CreateSpawner {
+    private static Map<String, String> bukkitToNMS = ImmutableMap.<String, String>builder()
+            .put("Horse", "EntityHorse")
+            .put("Mushroom_Cow", "MushroomCow")
+            .put("Magma_Cube", "LavaSlime")
+            .put("Snowman", "SnowMan")
+            .put("SilverFish", "Silverfish")
+            .put("Cave_Spider", "CaveSpider")
+            .put("Iron_Golem", "VillagerGolem")
+            .put("Ender_Dragon", "EnderDragon")
+            .put("Pig_Zombie", "PigZombie")
+            .build();
+
     public static ItemStack get(String entityType, int amount) {
         net.minecraft.server.v1_8_R1.ItemStack item = CraftItemStack.asNMSCopy(new ItemStack(Material.MOB_SPAWNER));
 
@@ -26,7 +40,13 @@ public class CreateSpawner {
         }
 
         tag = tag.getCompound("BlockEntityTag");
-        tag.setString("EntityId", entityType);
+
+        String entityIdStr = entityType;
+        if (bukkitToNMS.containsKey(entityIdStr)) {
+            entityIdStr = bukkitToNMS.get(entityIdStr);
+        }
+
+        tag.setString("EntityId", entityIdStr);
         ItemStack spawner = CraftItemStack.asBukkitCopy(item);
         ItemMeta meta = spawner.getItemMeta();
 
