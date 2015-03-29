@@ -11,6 +11,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
 public class CommandGiveSpawner implements CommandExecutor {
@@ -30,6 +31,7 @@ public class CommandGiveSpawner implements CommandExecutor {
 
                 if (mob1 != null) {
                     String e1 = mob1.getName();
+                    EntityType t1 = mob1.getType();
 
                     try {
                         int target2 = Integer.parseInt(args[1]);
@@ -37,13 +39,13 @@ public class CommandGiveSpawner implements CommandExecutor {
 
                         if (target1 != null) {
                             if (target1 != spawner1) {
-                                target1.getInventory().addItem(CreateSpawner.get(e1, target2));
+                                target1.getInventory().addItem(CreateSpawner.createSpawner(t1, target2));
                                 target1.updateInventory();
                                 instance.message.send(spawner1, Language.SUCCESS_GIVE.toString().replace("%user%", target1.getName()).replace("%amount%", Integer.toString(target2)).replace("%type%", args[0]));
                                 instance.message.send(target1, Language.SPAWNERS_ADDED.toString().replace("%amount%", Integer.toString(target2)).replace("%type%", e1));
                                 return true;
                             } else {
-                                spawner1.getInventory().addItem(CreateSpawner.get(e1, target2));
+                                spawner1.getInventory().addItem(CreateSpawner.createSpawner(t1, target2));
                                 spawner1.updateInventory();
                                 instance.message.send(spawner1, Language.SPAWNERS_ADDED.toString().replace("%amount%", Integer.toString(target2)).replace("%type%", e1));
                                 return true;
@@ -75,7 +77,7 @@ public class CommandGiveSpawner implements CommandExecutor {
                     Player target = Bukkit.getPlayer(args[2]);
 
                     if (target != null) {
-                        target.getInventory().addItem(CreateSpawner.get(mob, e));
+                        target.getInventory().addItem(CreateSpawner.createSpawner(spawner.getType(), e));
                         target.updateInventory();
                         target.sendMessage(Language.PREFIX.toString() + Language.SPAWNERS_ADDED.toString().replace("%amount%", Integer.toString(e)).replace("%type%", mob));
                         return false;

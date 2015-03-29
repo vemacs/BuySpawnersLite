@@ -9,7 +9,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 public enum Language {
 
-    PREFIX("prefix", "&b[&aBuySpawners&b] &f"),
+    PREFIX("prefix", "&b[&aSpawners&b] &f"),
     NO_PERMISSIONS("no-permissions", "&cYou don\'t have the correct permissions to do that."),
     NO_PERMS_MINE("no-perms-mine", "&cYou don\'t have the permissions to mine that spawner type."),
     NO_PERMS_PLACE("no-perms-place", "&cYou don\'t have permission to place that spawner type."),

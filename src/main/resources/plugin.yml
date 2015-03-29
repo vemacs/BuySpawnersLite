@@ -1,6 +1,6 @@
 main: me.pureplugins.buyspawners.Main
 
-depend: [Vault]
+depend: [Vault, SilkSpawners]
 
 name: BuySpawners
 version: 3.1

@@ -57,6 +57,7 @@ public class SignClickListener implements Listener {
                         spawner = SpawnerManager.getSpawner(ChatColor.stripColor(line[2].toLowerCase()));
                         if (spawner != null) {
                             String mob = spawner.getName();
+                            EntityType type = spawner.getType();
 
                             if (permissionToBuy && (!user.hasPermission(Permissions.get("buyspawners.signs.use." + mob)) || !user.hasPermission(Permissions.get("buyspawners.signs.use.*")))) {
                                 instance.message.send(user, Language.NO_PERMS_BUY);
@@ -66,7 +67,7 @@ public class SignClickListener implements Listener {
                             int amount = Integer.parseInt(ChatColor.stripColor(line[1]));
 
                             if (user.isOp()) {
-                                user.getInventory().addItem(CreateSpawner.get(mob, amount));
+                                user.getInventory().addItem(CreateSpawner.createSpawner(type, amount));
                                 user.updateInventory();
                                 BuySpawnerEvent cost1 = new BuySpawnerEvent(user, EntityType.valueOf(mob.toUpperCase()), mob, 0.0D);
 
@@ -79,7 +80,7 @@ public class SignClickListener implements Listener {
                             EconomyResponse er = instance.econ.withdrawPlayer(user, cost);
 
                             if (er.transactionSuccess()) {
-                                user.getInventory().addItem(CreateSpawner.get(mob, amount));
+                                user.getInventory().addItem(CreateSpawner.createSpawner(type, amount));
                                 user.updateInventory();
                                 BuySpawnerEvent event = new BuySpawnerEvent(user, EntityType.valueOf(mob.toUpperCase()), mob, cost);
 

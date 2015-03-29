@@ -14,10 +14,6 @@ use permissions to buy: true
 use permissions to place: true
 #
 #
-# How do you want to send messages?
-use action bar: true
-#
-#
 # How do you want signs to look?
 signColors:
   lineOne: '&1'

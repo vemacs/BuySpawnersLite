@@ -1,4 +1,4 @@
-prefix: "&b[&aBuySpawners&b] &f"
+prefix: "&b[&aSpawners&b] &f"
 no-permissions: "&cYou don't have permission to do that."
 no-perms-mine: "&cYou don't have permission to mine that spawner type."
 no-perms-place: "&cYou don't have permission to place that spawner type."
