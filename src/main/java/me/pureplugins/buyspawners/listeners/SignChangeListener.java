@@ -5,7 +5,7 @@ import me.pureplugins.buyspawners.handler.Spawner;
 import me.pureplugins.buyspawners.handler.SpawnerManager;
 import me.pureplugins.buyspawners.language.Language;
 import me.pureplugins.buyspawners.permissions.Permissions;
-import org.apache.commons.lang3.text.WordUtils;
+import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
