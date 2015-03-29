@@ -51,7 +51,6 @@ public class SignClickListener implements Listener {
                             sign.setLine(3, "$" + spawner.getPrice());
                             sign.update();
                             instance.message.send(user, Language.SUCCESS_UPDATE);
-                            return;
                         }
                     } else if (line[0].contains("[Spawner]") && instance.signLocations.contains(sign.getLocation().toString())) {
                         spawner = SpawnerManager.getSpawner(ChatColor.stripColor(line[2].toLowerCase()));
@@ -90,7 +89,6 @@ public class SignClickListener implements Listener {
                             }
 
                             instance.message.send(user, Language.NO_FUNDS);
-                            return;
                         }
                     }
                 }
