@@ -25,7 +25,6 @@ public class ItemStackFixer implements Listener {
                         itemInHandField.setAccessible(true);
                     }
                     itemInHandField.set(event, fixed);
-                    event.getPlayer().setItemInHand(fixed);
                 } catch (NoSuchFieldException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
