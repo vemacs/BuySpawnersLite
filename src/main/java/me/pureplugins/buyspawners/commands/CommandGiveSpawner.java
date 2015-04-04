@@ -1,5 +1,6 @@
 package me.pureplugins.buyspawners.commands;
 
+import de.dustplanet.util.SilkUtil;
 import me.pureplugins.buyspawners.Main;
 import me.pureplugins.buyspawners.handler.Spawner;
 import me.pureplugins.buyspawners.handler.SpawnerManager;
@@ -15,11 +16,12 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
 public class CommandGiveSpawner implements CommandExecutor {
-
     Main instance = Main.getInstance();
+    SilkUtil su;
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if (su == null) su = SilkUtil.hookIntoSilkSpanwers();
         if (sender instanceof Player) {
             Player spawner1 = (Player) sender;
 
@@ -30,8 +32,8 @@ public class CommandGiveSpawner implements CommandExecutor {
                 Spawner mob1 = SpawnerManager.getSpawner(args[0]);
 
                 if (mob1 != null) {
-                    String e1 = mob1.getName();
                     EntityType t1 = mob1.getType();
+                    String e1 = su.getCreatureName(t1.getTypeId());
 
                     try {
                         int target2 = Integer.parseInt(args[1]);
@@ -70,7 +72,7 @@ public class CommandGiveSpawner implements CommandExecutor {
             Spawner spawner = SpawnerManager.getSpawner(args[0]);
 
             if (spawner != null) {
-                String mob = spawner.getName();
+                String mob = su.getCreatureName(spawner.getType().getTypeId());
 
                 try {
                     int e = Integer.parseInt(args[1]);

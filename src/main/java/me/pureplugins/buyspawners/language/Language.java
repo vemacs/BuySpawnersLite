@@ -24,7 +24,7 @@ public enum Language {
     SUCCESS_GIVE("sucsess-give", "&7You gave &a%user% &e%amount% &c%type% &7spawners."),
     SUCCESS_UPDATE("sucsess-update", "&7You successfully updated that spawner sign"),
     SIGN_CREATE("sign-create", "&7You created a %type% &7buy sign."),
-    SPAWNERS_ADDED("spawners-added", "&e%amount% &a%type% &7spawners added to your inventory.");
+    SPAWNERS_ADDED("spawners-added", "&e%amount% %type% &2spawners added to your inventory.");
 
     private String path;
     private String def;
