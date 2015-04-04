@@ -1,12 +1,13 @@
 package me.pureplugins.buyspawners.configuration;
 
+import me.pureplugins.buyspawners.Main;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
-import me.pureplugins.buyspawners.Main;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 
 public final class LocationConfig {
 

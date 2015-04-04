@@ -1,11 +1,12 @@
 package me.pureplugins.buyspawners.language;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import me.pureplugins.buyspawners.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 public enum Language {
 
