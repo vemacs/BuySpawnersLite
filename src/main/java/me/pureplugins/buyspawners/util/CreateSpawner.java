@@ -33,7 +33,7 @@ public class CreateSpawner {
         } else {
             if (is.hasItemMeta()) {
                 String name = is.getItemMeta().getDisplayName();
-                if (name != null && !name.isEmpty()) {
+                if (name != null && !name.isEmpty() && !ChatColor.stripColor(name).equals(name)) {
                     Main.getInstance().getLogger().warning("Falling back to displayname for " + name);
                     name = ChatColor.stripColor(name.toLowerCase());
                     String[] nameParts = name.split(" ");
