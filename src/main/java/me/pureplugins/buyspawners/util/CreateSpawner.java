@@ -30,7 +30,6 @@ public class CreateSpawner {
                     }
                 }
             }
-        } else {
             if (is.hasItemMeta()) {
                 String name = is.getItemMeta().getDisplayName();
                 if (name != null && !name.isEmpty() && !ChatColor.stripColor(name).equals(name)) {
