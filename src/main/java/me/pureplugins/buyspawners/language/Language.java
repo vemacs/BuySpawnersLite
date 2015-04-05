@@ -20,7 +20,7 @@ public enum Language {
     NO_CONSOLE("no-console", "That command must be executed by a player."),
     INVALID_MOB("invalid-mob", "&cThat mob dosen\'t exist."),
     INVALID_NUMBER("invalid-number", "&cNumber format Exception."),
-    SUCCESS_PURCHASE("sucsess-purchase", "&7You successfully purchased &e%amount% &c%type% &7spawner."),
+    SUCCESS_PURCHASE("sucsess-purchase", "&2You have purchased &e%amount% %type% &2spawners."),
     SUCCESS_GIVE("sucsess-give", "&7You gave &a%user% &e%amount% &c%type% &7spawners."),
     SUCCESS_UPDATE("sucsess-update", "&7You successfully updated that spawner sign"),
     SIGN_CREATE("sign-create", "&7You created a %type% &7buy sign."),

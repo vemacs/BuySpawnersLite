@@ -1,5 +1,6 @@
 package me.pureplugins.buyspawners.listeners;
 
+import de.dustplanet.util.SilkUtil;
 import me.pureplugins.buyspawners.Main;
 import me.pureplugins.buyspawners.events.BuySpawnerEvent;
 import me.pureplugins.buyspawners.handler.Spawner;
@@ -23,6 +24,7 @@ public class SignClickListener implements Listener {
 
     Main instance = Main.getInstance();
     private final boolean permissionToBuy;
+    private SilkUtil su;
 
     public SignClickListener() {
         permissionToBuy = instance.getConfig().getBoolean("use permissions to buy");
@@ -30,6 +32,7 @@ public class SignClickListener implements Listener {
 
     @EventHandler
     private void onClick(PlayerInteractEvent evt) {
+        if (su == null) su = SilkUtil.hookIntoSilkSpanwers();
         Player user = evt.getPlayer();
         Block block = evt.getClickedBlock();
 
@@ -71,7 +74,8 @@ public class SignClickListener implements Listener {
                                 BuySpawnerEvent cost1 = new BuySpawnerEvent(user, EntityType.valueOf(mob.toUpperCase()), mob, 0.0D);
 
                                 Bukkit.getPluginManager().callEvent(cost1);
-                                instance.message.send(user, Language.SUCCESS_PURCHASE.toString().replace("%amount%", Integer.toString(amount)).replace("%type%", mob));
+                                instance.message.send(user, Language.SUCCESS_PURCHASE.toString().replace("%amount%",
+                                        Integer.toString(amount)).replace("%type%", su.getCreatureName(type.getTypeId())));
                                 return;
                             }
 
@@ -84,7 +88,8 @@ public class SignClickListener implements Listener {
                                 BuySpawnerEvent event = new BuySpawnerEvent(user, EntityType.valueOf(mob.toUpperCase()), mob, cost);
 
                                 Bukkit.getPluginManager().callEvent(event);
-                                instance.message.send(user, Language.SUCCESS_PURCHASE.toString().replace("%amount%", Integer.toString(amount)).replace("%type%", mob));
+                                instance.message.send(user, Language.SUCCESS_PURCHASE.toString().replace("%amount%",
+                                        Integer.toString(amount)).replace("%type%", su.getCreatureName(type.getTypeId())));
                                 return;
                             }
 

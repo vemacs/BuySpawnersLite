@@ -1,6 +1,8 @@
 package me.pureplugins.buyspawners.util;
 
 import de.dustplanet.util.SilkUtil;
+import me.pureplugins.buyspawners.Main;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
@@ -17,12 +19,37 @@ public class CreateSpawner {
     public static ItemStack fixStack(ItemStack is) {
         if (su == null) su = SilkUtil.hookIntoSilkSpanwers();
         String vanillaNbtId = su.nmsProvider.getVanillaNBTEntityID(is);
-        if (vanillaNbtId == null) return is;
-        try {
-            EntityType type = EntityType.valueOf(vanillaNbtId.toUpperCase());
-            return createSpawner(type, is.getAmount());
-        } catch (IllegalArgumentException | NullPointerException e) {
-            return is;
+        if (vanillaNbtId != null) {
+            try {
+                EntityType type = EntityType.valueOf(vanillaNbtId.toUpperCase());
+                return createSpawner(type, is.getAmount());
+            } catch (IllegalArgumentException | NullPointerException e) {
+                for (EntityType type : EntityType.values()) {
+                    if (type.name().replace("_", "").equals(vanillaNbtId.toUpperCase())) {
+                        return createSpawner(type, is.getAmount());
+                    }
+                }
+            }
+        } else {
+            if (is.hasItemMeta()) {
+                String name = is.getItemMeta().getDisplayName();
+                if (name != null && !name.isEmpty()) {
+                    Main.getInstance().getLogger().warning("Falling back to displayname for " + name);
+                    name = ChatColor.stripColor(name.toLowerCase());
+                    String[] nameParts = name.split(" ");
+                    for (String part : nameParts) {
+                        if (part.equalsIgnoreCase("spawner")) {
+                            continue;
+                        }
+                        if (su.isKnown(part)) {
+                            short entityID = su.name2Eid.get(part);
+                            return su.newSpawnerItem(entityID, su.getCustomSpawnerName(su.eid2MobID.get(entityID)),
+                                    is.getAmount(), false);
+                        }
+                    }
+                }
+            }
         }
+        return is;
     }
 }
