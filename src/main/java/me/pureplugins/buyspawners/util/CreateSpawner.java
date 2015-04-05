@@ -19,8 +19,8 @@ public class CreateSpawner {
     public static ItemStack fixStack(ItemStack is) {
         if (su == null) su = SilkUtil.hookIntoSilkSpanwers();
         String vanillaNbtId = su.nmsProvider.getVanillaNBTEntityID(is);
-        if (su.mobID2Eid.containsKey(vanillaNbtId)) return is;
         if (vanillaNbtId != null) {
+            if (su.mobID2Eid.containsKey(vanillaNbtId)) return is;
             try {
                 EntityType type = EntityType.valueOf(vanillaNbtId.toUpperCase());
                 return createSpawner(type, is.getAmount());
