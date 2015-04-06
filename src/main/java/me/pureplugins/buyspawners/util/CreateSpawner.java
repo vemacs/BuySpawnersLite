@@ -2,6 +2,7 @@ package me.pureplugins.buyspawners.util;
 
 import de.dustplanet.util.SilkUtil;
 import me.pureplugins.buyspawners.Main;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
@@ -20,18 +21,33 @@ public class CreateSpawner {
         String vanillaNbtId = su.nmsProvider.getVanillaNBTEntityID(is);
         if (vanillaNbtId != null) {
             if (su.mobID2Eid.containsKey(vanillaNbtId)) return is;
-            try {
-                EntityType type = EntityType.valueOf(vanillaNbtId.toUpperCase());
+            EntityType type = entityTypeFromString(vanillaNbtId);
+            if (type != null) {
                 return createSpawner(type, is.getAmount());
-            } catch (IllegalArgumentException | NullPointerException e) {
-                for (EntityType type : EntityType.values()) {
-                    if (type.name().replace("_", "").equals(vanillaNbtId.toUpperCase())) {
-                        return createSpawner(type, is.getAmount());
-                    }
+            }
+        } else if (is.hasItemMeta() && is.getItemMeta().hasLore()) {
+            String firstLine = is.getItemMeta().getLore().get(0);
+            if (firstLine != null && !firstLine.isEmpty()) {
+                firstLine = ChatColor.stripColor(firstLine).replace("Type: ", "").trim();
+                EntityType type = entityTypeFromString(firstLine);
+                if (type != null) {
+                    return createSpawner(type, is.getAmount());
                 }
             }
-            Main.getInstance().getLogger().warning("Corrupted NBT entityId detected: " + vanillaNbtId);
         }
         return is;
+    }
+
+    public static EntityType entityTypeFromString(String str) {
+        try {
+            return EntityType.valueOf(str.toUpperCase());
+        } catch (IllegalArgumentException | NullPointerException e) {
+            for (EntityType type : EntityType.values()) {
+                if (type.name().replace("_", "").equals(str.toUpperCase())) {
+                    return type;
+                }
+            }
+        }
+        return null;
     }
 }
